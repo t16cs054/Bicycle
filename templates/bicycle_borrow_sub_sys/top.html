@@ -1,0 +1,54 @@
+{% load static %}
+
+<doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'bicycle_borrow_sub_sys/style.css' %}">
+    </head>
+	<body>	
+		<header>
+			<div class="header-logo">
+				トップ画面
+				<span class="hello">こんにちは {{ user.username }} さん。</span>
+			</div>
+			<div class="header-list">
+				<ul>
+					<li><a href="{% url 'accounts:logout' %}">
+						ログアウト
+					</a></li>
+				</ul>
+			</div>
+		</header>
+		<div class="main">
+			<div class="message">
+			<div class="now_bicycle">
+				{% if all_my_bike == 0 %}
+					現在、自転車を一台も借りていません。
+				{% else %}
+					現在、自転車を {{ all_my_bike }} 台借りています。
+				{% endif %}
+				{% if all_my_bike == 3 %}
+					<div class="warning_to_borrow">
+						これ以上借りることができません。返却処理を行ってください。
+					</div>
+				{% endif %}
+			</div>
+			</div>
+			<div class="circle">
+	       	{% if all_my_bike == 3 %}
+		        	 <a href="{% url 'bicycle_borrow_sub_sys:return_bicycle' %}" class="return_circle" title="Return">返す</a>
+				{% endif %}
+				{% if all_my_bike == 0 %}
+			       	<a href="{% url 'bicycle_borrow_sub_sys:borrow_bicycle' %}" class="borrow_circle" title="Borrow">借りる</a>   
+			        
+				{% endif %}
+				{% if all_my_bike == 1 or all_my_bike == 2 %}
+					<a href="{% url 'bicycle_borrow_sub_sys:borrow_bicycle' %}" class="borrow_circle" title="Borrow">借りる</a>   
+		        	<a href="{% url 'bicycle_borrow_sub_sys:return_bicycle' %}" class="return_circle" title="Return">返す</a>
+				{% endif %}
+				</a>
+			</div>
+		</body>
+</html>

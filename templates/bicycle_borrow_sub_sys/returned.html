@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+
+{% load static %}
+<head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'bicycle_borrow_sub_sys/style.css' %}">
+</head>
+
+<body>
+	<header>
+			<div class="header-logo">
+				返す画面
+				<span class="hello">こんにちは {{ user.username }} さん。</span>
+			</div>
+			<div class="header-list">
+				<ul>
+					<li><a href="{% url 'accounts:logout' %}" class="logout">ログアウト</a></li>
+					<li><a href="{% url 'bicycle_borrow_sub_sys:top' %}" class="logout">トップに戻る</a></li>
+				</ul>
+			</div>
+	</header>
+	<div class="main">
+		<meta http-equiv="refresh" content='3;URL={% url 'bicycle_borrow_sub_sys:top' %}'>
+		<div class="message">
+
+			{{request.user.username}}さんによる自転車の返却が完了しました。</br>
+			現在、借りられる自転車は残り{{ my_limit }}台です。
+
+		</div>
+		  <table>
+		    <tr>
+		      <th>現事務所</th>
+		      <th>自転車番号</th>
+		      <th>自転車の色</th>
+		      <th></th>
+		    </tr>
+		
+		
+		    <tr>
+		     <td>{{data.office_id.office_name}}</td>
+		     <td>{{data.bicycle_id}}</td>
+		     <td>{% if data.color == 0 %}ピンク{% endif %}{% if data.color == 1 %}オレンジ{% endif %}{% if data.color == 2 %}グリーン{% endif %}</td>
+		    </tr>
+		    
+		   </table>
+	<font size=5><p>3秒後に一般社員用画面トップに自動でジャンプします</p></font>
+	</div>
+</body>
+</html>

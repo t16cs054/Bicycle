@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+
+{% load static %}
+<head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'bicycle_borrow_sub_sys/style.css' %}">
+</head>
+
+<body>
+	<header>
+			<div class="header-logo">
+				返す画面
+				<span class="hello">こんにちは {{ user.username }} さん。</span>
+			</div>
+			<div class="header-list">
+				<ul>
+					<li><a href="{% url 'accounts:logout' %}" class="logout">ログアウト</a></li>
+					<li><a href="{% url 'bicycle_borrow_sub_sys:top' %}" class="logout">一般社員トップ画面に戻る</a></li>
+				</ul>
+			</div>
+	</header>
+	<div class="main">
+		<div class="message">
+			返却する自転車を選択してください。
+		</div>
+		  <form action="{% url 'bicycle_borrow_sub_sys:return_warning'  %}" method="post">{% csrf_token %}
+		  <table>
+		    <tr>
+		      <!--  <th>borrow_id</th> -->
+		      <th>自転車番号</th>
+		      <th>色</th>
+		      <th>利用状況</th>
+		      <th>社員番号</th>
+		      <th>名前</th>
+		      <th>使用日数</th>
+		      <th></th>
+		    </tr>
+
+		    {% for item in data %}
+		    <tr>
+		    <!--  <td>{{item.borrow_id}}</td> -->
+		    <td>{{item.bicycle_id.bicycle_id}}</td>
+		    <td>{% if item.bicycle_id.color == 0 %}ピンク{% endif %}{% if item.bicycle_id.color == 1 %}オレンジ{% endif %}{% if item.bicycle_id.color == 2 %}グリーン{% endif %}</td>
+		    <td>使用中</td>
+		    <td>{{item.employee_id.employee_id}}</td>
+		    <td>{{item.employee_id.username}}</td>
+		    <td>{{item.how_long_borrow}}</td>
+		    <td><input type="radio" name="bicycle" value={{item.bicycle_id.bicycle_id}} required="required"></td>
+		    </tr>
+		    {%endfor %}
+		   </table>
+		   <table>
+		   <tr>
+		   <tr>返却先を選択してください。</tr>
+		   </br>
+		   <th>事務所名</th>
+		   <th></th>
+		   </tr>
+		   {% for item in data2 %}
+		   <tr>
+		   <td>{{item.office_name}}</td>
+		   <td><input type="radio" name="office" value={{item.office_id}} required="required"></td>
+		   </tr>
+		   {%endfor %}
+		   </table>
+		   <p>
+		   <input type="submit" value="送信">
+		   </p>
+		   </form>
+		</div>
+	</body>
+</html>

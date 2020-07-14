@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+
+{% load static %}
+<head>
+        <meta charset="utf-8">
+        <title>移動確認画面</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'bicycle_borrow_sub_sys/style.css' %}">
+    </head>
+
+	<body>
+	<header>
+			<div class="header-logo">
+				移動警告画面
+				<span class="hello">こんにちは {{ user.username }} さん。</span>
+			</div>
+			<div class="header-list">
+				<ul>
+					<li><a href="{% url 'accounts:logout' %}" class="logout">ログアウト</a></li>
+					<li><a href="{% url 'admin_func:top' %}" class="logout">戻る</a></li>
+				</ul>
+			</div>
+	</header>
+	<div class="main">
+	<span class="title_font"><h1>{{title}}</h1></span> {% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message }}</li> {% endfor %}</ul>{% endif %}
+			<table>
+			<td>{{target_bicycle.office_id.office_name}}</td>
+		<tr>
+			<td>自転車番号</td>
+			<td>自転車の色</td>
+			<td>利用状況</td>
+			<td>使用社員番号</td>
+			<td>使用社員名</td>
+			<td>使用日数</td>
+		</tr>
+		{% for item in data %}
+		<tr>
+			<td>{{item.bicycle_id.bicycle_id}}</td>
+			<td>{% if item.bicycle_id.color == 0 %}ピンク{% endif %}{% if item.bicycle_id.color == 1 %}オレンジ{% endif %}{% if item.bicycle_id.color == 2 %}グリーン{% endif%}</td>
+			<td>{% if item.bicycle_id.status == True %}利用中{% endif %}{% if item.bicycle_id.status == False %}未使用{% endif %}</td>
+			<td>{% if item.employee_id == Null %}---{% endif %}{% if item.employee_id != Null%}{{item.employee_id}}{% endif %}</td>
+			<td>{% if item.employee_id.username == Null %}---{% endif %}{% if item.employee_id.username != Null%}{{item.employee_id.username}}{% endif %}</td>
+			<td>{% if item.how_long_borrow == -1 %}---{% endif %}{% if item.how_long_borrow != -1%}{{item.how_long_borrow}}{% endif %}</td>
+		</tr>
+		{% endfor %}
+		<form action="{% url 'admin_func:transfer_warning' num %}"method="post">
+		{% csrf_token %}
+		{% for of in offices %}
+   <tr>
+   <td>{{of.office_name}}</td>
+   <td><input type="radio" name="office" value={{of.office_id}} ></td>
+   </tr>
+   {%endfor %}
+		<tr>
+			<th></th>
+			<td><input type="submit" value="移動する"></td>
+		</tr>
+	</form>
+	</table>
+	<font size=3><tr>この自転車をどの事務所に移動しますか？</tr></font>
+	</br>
+		<font size=3, color="RED"><tr>自転車を移動すると使用社員数に関わらず利用状況が"未使用"に戻ります。</tr></font>
+	</div>
+</body>
+</html>

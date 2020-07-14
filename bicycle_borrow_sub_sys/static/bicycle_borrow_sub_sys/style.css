@@ -1,0 +1,222 @@
+body{background-color: #3fbfff;}
+
+.borrow_circle {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  vertical-align: middle; 
+  border: 2px solid #ff0077;
+  font-size: 32px;
+  color: #ff0077;
+  margin: 100px 50px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.borrow_circle:hover {
+  background-color: #ff0077;
+  border-color: #ff0077;
+  color: #ddffff;
+}
+
+.return_circle {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  vertical-align: middle; 
+  border: 2px solid #00f;
+  font-size: 32px;
+  color: #00f;
+  margin: 100px 50px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.return_circle:hover {
+  background-color: #00f;
+  border-color: #00f;
+  color: #ddffff;
+}
+
+.btn_push {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  background-color: #39f;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 24px;
+  border-radius: 4px;
+  border-bottom: 4px solid #03c;
+}
+
+.btn_push:active {
+    border-bottom: none;
+    border-top: 4px solid #ddffff;
+}
+
+body {
+
+  font-family: "Avenir Next";
+}
+
+header {
+
+	height: 90px;
+}
+
+.hello {
+	font-size: 20px;
+	padding: 20px 40px;
+}
+
+.header-logo {
+	float: left;
+	font-size: 32px;
+	font-weight: 200px;
+	padding: 20px 10px;
+	color: black;
+}
+
+.header-list {
+
+	text-align: center;
+}
+
+.header-list li{
+	list-style: none;
+	float: right;
+	padding: 33px 50px;
+	background-color: #ffbc70;
+}
+
+.header-list a {
+	display: block;
+	text-decoration: none;
+	color: #03a82c;
+	font-weight: bolder;
+	font-size: 20px;
+	width: auto;
+	height: auto;
+}
+
+.header-list a:hover {
+	color: #ffffff;
+	opacity: 0.4;
+}
+
+.main {
+	background-color: #ddffff;
+	height: 810px;
+}
+
+.message {
+	padding: 30px 20px;
+	font-size: 26px;
+	color: black;
+}
+
+.warning_to_borrow {
+	background-color: red;
+	color: white;
+}
+
+
+table {
+	text-align: center;
+}
+
+.disp_yellow_warning {
+	background: linear-gradient(transparent 0%, yellow 0%);
+	font-weight: bold; 
+	border-radius:6px;
+	height:20px;
+	width: auto;
+}
+
+.disp_red_warning {
+	background: linear-gradient(transparent 0%, orangered 0%);
+	font-weight: bold; 
+	border-radius:6px;
+	height:20px;
+	width: auto;
+}
+
+.not_borrow_circle {
+	font-size: 45px;
+	color: red;
+	opacity: 0.7;
+}
+
+.not_borrow_circle a {
+	background-color: lightyellow;
+	pointer-events: none;
+}
+
+.not_borrow_circle a:hover {
+	background-color: lightyellow;
+	color: red;
+	opacity: 0.6;
+}
+
+
+
+/* アコーディオンメニュー用コード */
+/*ボックス全体*/
+.accbox {
+    margin: 10px 10px;
+    padding: 0;
+    max-width: 710px;/*最大幅*/
+}
+
+/*ラベル*/
+.accbox label {
+    display: block;
+    margin: 1.5px;
+    padding : 5px 5px;
+    color : linen;
+    font-weight: bold;
+    background :green;
+    cursor :pointer;
+    transition: all 0.5s;
+}
+
+/*ラベルホバー時*/
+.accbox label:hover {
+    background : green;
+    opacity: 0.6;
+}
+
+/*チェックは隠す*/
+.accbox input {
+	display: none;
+}
+
+/*中身を非表示にしておく*/
+.accbox .accshow {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+/*クリックで中身表示*/
+.cssacc:checked + .accshow {
+    height: auto;
+    width: auto;
+    color: black;
+    padding: 5px;
+    background: #9af4b9;
+}

@@ -1,0 +1,15 @@
+<doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+				管理者ログインテスト画面
+        </title>
+    </head>
+    <body>
+    	<h1>Hello Manager_Top_Test !!</h1>
+    	<p>ここは管理者のログインが通っていると表示されるテストページです</p>
+    	<!-- <p><a href="http://127.0.0.1:8000/accounts/manager_logout/">ログアウト</a></p> -->
+    	<p><a href="{% url 'accounts:manager_logout' %}">ログアウト</a></p>
+    </body>
+</html>

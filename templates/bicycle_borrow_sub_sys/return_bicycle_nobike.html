@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+
+{% load static %}
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'hello/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'hello/home.css' %}">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <mata charset="utf-8">
+    <title>{{title}}</title>
+    <p style="text-align: right"><a href="{% url 'accounts:logout' %}">ログアウト</a> <a href="{% url 'bicycle_borrow_sub_sys:top' %}">top画面へ戻る</a></p>
+</head>
+
+<body>
+  <span class="title_font"><h1>{{title}}</h1></span>
+  <p>Hi {{ user.username }}</p>
+  <p>{{msg}}</p>
+  
+ 

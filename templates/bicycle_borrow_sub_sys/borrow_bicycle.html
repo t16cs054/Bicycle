@@ -1,0 +1,137 @@
+{% load static %}
+
+<!doctype html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'bicycle_borrow_sub_sys/style.css' %}">
+    </head>
+
+	<body>
+	<header>
+			<div class="header-logo">
+				借りる画面
+				<span class="hello">こんにちは {{ user.username }} さん。</span>
+			</div>
+			<div class="header-list">
+				<ul>
+					<li><a href="{% url 'accounts:logout' %}" class="logout">ログアウト</a></li>
+					<li><a href="{% url 'bicycle_borrow_sub_sys:top' %}" class="logout">トップに戻る</a></li>
+				</ul>
+			</div>
+	</header>
+	<div class="main">
+		<div class="message">
+			利用する自転車を選択してください。
+		</div>
+	
+		<div class="accbox">
+			<label for="office1">{{office1.office_name}} | 現在、{{office1.bicycle_nums_office}}台の自転車があります</label>
+			<input type="checkbox" id="office1" class="cssacc" />
+			<div class="accshow">
+				<table>
+					<tr>
+					  <th>自転車番号</th>
+					  <th>色</th>
+					  <th>利用状況</th>
+					  <th>社員番号</th>
+					  <th>名前</th>
+					  <th>使用日数</th>
+					  <th></th>
+					</tr>
+			    	{% for item in data %}
+						{% if item.bicycle_id.office_id.office_id == 1 %}
+						    <tr>
+						    <td>{{item.bicycle_id.bicycle_id}}</td>
+						    <td>{% if item.bicycle_id.color == 0 %}ピンク{% endif %}{% if item.bicycle_id.color == 1 %}オレンジ{% endif %}{% if item.bicycle_id.color == 2 %}グリーン{% endif %}</td>
+						    {% if item.bicycle_id.status == False %}
+						    	<td>未使用</td>
+						    	<td> ー </td>
+						    	<td> ー </td>
+							   	<td> ー </td>
+							{% endif %}
+						    {% if item.bicycle_id.status == True %}
+						    	<td>使用中</td>
+						    	<td>{{item.employee_id.employee_id}}</td>
+						    	<td>{{item.employee_id.username}}</td>
+						   	 	<td>{{item.how_long_borrow}}</td>
+							{% endif %}
+						    <td>{% if item.bicycle_id in list %}既に借りています{% endif %}{% if item.bicycle_id not in list %}<a href="{% url 'bicycle_borrow_sub_sys:borrow_warning' item.bicycle_id.bicycle_id %}">利用する</a>{% endif %}</td>
+						{% endif %}
+					{% endfor %}
+		 		</table>
+	 		</div>
+		 	<label for="office2">{{office2.office_name}} | 現在、{{office2.bicycle_nums_office}}台の自転車があります</label>
+			<input type="checkbox" id="office2" class="cssacc" />
+			<div class="accshow">
+				<table>
+					<tr>
+					  <th>自転車番号</th>
+					  <th>色</th>
+					  <th>利用状況</th>
+					  <th>社員番号</th>
+					  <th>名前</th>
+					  <th>使用日数</th>
+					  <th></th>
+					</tr>
+			    	{% for item in data %}
+						{% if item.bicycle_id.office_id.office_id == 2 %}
+						    <tr>
+						    <td>{{item.bicycle_id.bicycle_id}}</td>
+						    <td>{% if item.bicycle_id.color == 0 %}ピンク{% endif %}{% if item.bicycle_id.color == 1 %}オレンジ{% endif %}{% if item.bicycle_id.color == 2 %}グリーン{% endif %}</td>
+						    {% if item.bicycle_id.status == False %}
+						    	<td>未使用</td>
+						    	<td> ー </td>
+						    	<td> ー </td>
+							   	<td> ー </td>
+							{% endif %}
+						    {% if item.bicycle_id.status == True %}
+						    	<td>使用中</td>
+						    	<td>{{item.employee_id.employee_id}}</td>
+						    	<td>{{item.employee_id.username}}</td>
+						   	 	<td>{{item.how_long_borrow}}</td>
+							{% endif %}
+						    <td>{% if item.bicycle_id in list %}既に借りています{% endif %}{% if item.bicycle_id not in list %}<a href="{% url 'bicycle_borrow_sub_sys:borrow_warning' item.bicycle_id.bicycle_id %}">利用する</a>{% endif %}</td>
+						{% endif %}
+					{% endfor %}
+		 		</table>
+	 		</div>
+	 		<label for="office3">{{office3.office_name}} | 現在、{{office3.bicycle_nums_office}}台の自転車があります</label>
+			<input type="checkbox" id="office3" class="cssacc" />
+			<div class="accshow">
+				<table>
+					<tr>
+					  <th>自転車番号</th>
+					  <th>色</th>
+					  <th>利用状況</th>
+					  <th>社員番号</th>
+					  <th>名前</th>
+					  <th>使用日数</th>
+					  <th></th>
+					</tr>
+			    	{% for item in data %}
+						{% if item.bicycle_id.office_id.office_id == 3 %}
+						    <tr>
+						    <td>{{item.bicycle_id.bicycle_id}}</td>
+						    <td>{% if item.bicycle_id.color == 0 %}ピンク{% endif %}{% if item.bicycle_id.color == 1 %}オレンジ{% endif %}{% if item.bicycle_id.color == 2 %}グリーン{% endif %}</td>
+						    {% if item.bicycle_id.status == False %}
+						    	<td>未使用</td>
+						    	<td> ー </td>
+						    	<td> ー </td>
+							   	<td> ー </td>
+							{% endif %}
+						    {% if item.bicycle_id.status == True %}
+						    	<td>使用中</td>
+						    	<td>{{item.employee_id.employee_id}}</td>
+						    	<td>{{item.employee_id.username}}</td>
+						   	 	<td>{{item.how_long_borrow}}</td>
+							{% endif %}
+						    <td>{% if item.bicycle_id in list %}既に借りています{% endif %}{% if item.bicycle_id not in list %}<a href="{% url 'bicycle_borrow_sub_sys:borrow_warning' item.bicycle_id.bicycle_id %}">利用する</a>{% endif %}</td>
+						{% endif %}
+					{% endfor %}
+		 		</table>
+	 		</div>
+		</div>
+	</body>
+</html>
